@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
-
+import React, { useState,useContext } from 'react'
+import NotesContext from "../../createcontext/Notes/NotesContext";
 export default function NoteFrom() {
+  // context state
+  const {AddNote} = useContext(NotesContext);
     //  declaring the use Sates
     const [NewNote, setNewNote] = useState({title:"",description:""});
 
@@ -12,7 +14,7 @@ export default function NoteFrom() {
 
     // handle on the click
     const handleclick=(e)=>{
-        console.log(NewNote);
+      AddNote({title:NewNote.title,description:NewNote.description});
         setNewNote({title:"",description:""});
         e.preventDefault();
     }

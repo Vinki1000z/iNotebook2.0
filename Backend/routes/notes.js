@@ -97,7 +97,6 @@ router.put(
       }
       UpadtedNote = await notes_Schema.findByIdAndUpdate(
         req.params.id,
-        req.params.id,
         UpadtedNote,
         {
           new: true,
