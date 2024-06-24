@@ -39,7 +39,9 @@ router.post(
     //  logging the error if comes in validating the form
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array(), success });
+      let triversing=errors.array();
+      let error=triversing.map((err)=>err.msg);
+      return res.status(400).json({ msg: error, success });
     }
 
     try {
@@ -71,10 +73,10 @@ router.post(
       };
 
       const token = jwt.sign(data, jwt_word);
-      res.json({ token, success });
+      res.json({ msg:token, success });
     } catch (error) {
       //  sending if any internal error comes in saving the data
-      res.json({ msg: "Internal Error Comes", error });
+      res.json({ msg: error ,success });
     }
   }
 );
@@ -84,9 +86,6 @@ router.post(
 router.post(
   "/login",
   [
-    // Validate name
-    body("name").notEmpty().withMessage("Name is required"),
-
     // Validate password
     body("password")
       .isLength({ min: 8 })
@@ -100,7 +99,9 @@ router.post(
     //  logging the error if comes in validating the form
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array(), success });
+      let triversing=errors.array();
+      let error=triversing.map((err)=>err.msg);
+      return res.status(400).json({ msg: error, success });
     }
 
     try {
@@ -134,7 +135,7 @@ router.post(
 
       //    Marking The Succes True
       success = true;
-      res.json({ token, success });
+      res.json({ msg:token, success });
     } catch (error) {
       //  sending if any internal error comes in saving the data
       res.json({ msg: "Internal Error Comes", error });
