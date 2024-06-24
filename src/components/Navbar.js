@@ -5,6 +5,9 @@ export default function Navbar() {
   const location = useLocation();
   // const isAuthenticated = localStorage.getItem("token");
   // let navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+  };
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary ">
@@ -53,7 +56,7 @@ export default function Navbar() {
                
 
               {
-                !localStorage.getItem("token")?<div className="d-flex">
+                localStorage.getItem("token")===null?<div className="d-flex">
                 <div className="mx-3">
                   <Link className="btn btn-primary" to="/" role="button">
                     Login-In
@@ -62,7 +65,7 @@ export default function Navbar() {
                 <Link className="btn btn-primary" to="/signup" role="button">
                   Sign-Up
                 </Link>
-              </div>:<Link className="btn btn-primary" to="/" onClick={localStorage.removeItem('token')}role="button">
+              </div>:<Link className="btn btn-primary" to="/" onClick={handleLogout}role="button">
                   Log-out
                 </Link>
               }

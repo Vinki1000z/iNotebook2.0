@@ -22,6 +22,7 @@ export default function Login() {
     if(json.success===true){
 
        localStorage.setItem('token',json.msg);
+       console.log(json.msg);
        navigate('/home');
     }else {
       console.log(json.msg);
